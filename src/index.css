@@ -1204,6 +1204,50 @@ tbody td {
   .recharts-responsive-container {
     min-width: 0 !important;
   }
+
+  /* Hamburger: thumb-friendly 44px touch target */
+  .hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Topbar: hide user name/role text, keep avatar only */
+  .user-info-text {
+    display: none;
+  }
+
+  /* Dashboard page header: stack title and refresh button vertically */
+  .dashboard-page-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  /* Override card-header rule that forces btn to 100% width */
+  .dashboard-page-header .btn {
+    width: auto;
+  }
+
+  /* Dashboard charts row: stack charts to single column */
+  .dashboard-charts-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Modal footer: wrap and full-width buttons on mobile */
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .modal-footer .btn {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 400px) {
