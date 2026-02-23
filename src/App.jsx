@@ -18,7 +18,7 @@ import StudentPortal from './pages/StudentPortal';
 // Icons
 import {
     MdDashboard, MdPeople, MdSchool,
-    MdBarChart, MdSettings, MdLogout, MdMenu, MdAdminPanelSettings
+    MdBarChart, MdSettings, MdLogout, MdMenu, MdAdminPanelSettings, MdClose
 } from 'react-icons/md';
 
 const NAV_ITEMS = [
@@ -47,6 +47,9 @@ function Sidebar({ isOpen, onClose }) {
             </AnimatePresence>
             <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
                 <div className="sidebar-logo">
+                    <button className="sidebar-close-btn" onClick={onClose} aria-label="Close menu">
+                        <MdClose />
+                    </button>
                     <motion.img
                         initial={{ scale: 0.8 }}
                         animate={{ scale: 1 }}

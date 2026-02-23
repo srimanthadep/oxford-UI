@@ -1059,13 +1059,46 @@ tbody td {
   padding: 4px;
 }
 
+/* Sidebar close button: hidden on desktop, visible on mobile */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 1;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
+    z-index: 300;
   }
 
   .sidebar.open {
     transform: translateX(0);
+  }
+
+  .sidebar-logo {
+    position: relative;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .main-content {
@@ -1180,6 +1213,22 @@ tbody td {
     grid-template-columns: 1fr !important;
   }
 
+  /* Dashboard-specific responsive overrides */
+  .dashboard-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .dashboard-header .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .dashboard-charts-row {
+    grid-template-columns: 1fr !important;
+  }
+
   .stat-card {
     padding: 12px;
   }
@@ -1203,6 +1252,82 @@ tbody td {
   .card,
   .recharts-responsive-container {
     min-width: 0 !important;
+  }
+
+  /* Topbar: hide user info text to save horizontal space */
+  .user-info-text {
+    display: none;
+  }
+
+  .topbar-title h1 {
+    font-size: 17px;
+  }
+
+  /* Modal: bottom-sheet style on mobile */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 92vh;
+    animation: slideUpSheet 0.3s ease !important;
+  }
+
+  @keyframes slideUpSheet {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* Sidebar overlay: cover full screen including topbar */
+  .sidebar-overlay.active {
+    display: block;
+    z-index: 299;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Very small screens: single column stats grid */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .content-area {
+    padding: 12px;
+  }
+
+  .card-header {
+    padding: 14px 16px;
+  }
+
+  .card-body {
+    padding: 14px 16px;
+  }
+
+  .modal-header {
+    padding: 18px 20px 14px;
+  }
+
+  .modal-body {
+    padding: 16px 20px;
+  }
+
+  .modal-footer {
+    padding: 14px 20px;
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -1452,7 +1577,7 @@ tbody td {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+  z-index: 299;
 }
 
 @media (max-width: 768px) {
