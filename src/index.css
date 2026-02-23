@@ -1295,9 +1295,9 @@ tbody td {
 }
 
 @media (max-width: 480px) {
-  /* Very small screens: single column stats grid */
+  /* Very small screens: two column stats grid */
   .stats-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .content-area {
