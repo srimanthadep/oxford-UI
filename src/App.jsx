@@ -14,6 +14,7 @@ import SettingsPage from './pages/SettingsPage';
 import AdminPage from './pages/AdminPage';
 import StaffPortal from './pages/StaffPortal';
 import StudentPortal from './pages/StudentPortal';
+import LoginPage from './pages/LoginPage';
 
 // Icons
 import {
@@ -28,6 +29,25 @@ const NAV_ITEMS = [
     { path: '/reports', label: 'Reports', icon: <MdBarChart /> },
     { path: '/settings', label: 'Settings', icon: <MdSettings /> },
 ];
+
+function BottomNav() {
+    return (
+        <nav className="bottom-nav">
+            <div className="bottom-nav-items">
+                {NAV_ITEMS.map(item => (
+                    <NavLink
+                        key={item.path}
+                        to={item.path}
+                        className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}
+                    >
+                        <span className="nav-icon">{item.icon}</span>
+                        {item.label}
+                    </NavLink>
+                ))}
+            </div>
+        </nav>
+    );
+}
 
 function Sidebar({ isOpen, onClose }) {
     const { user, logout } = useAuth();
@@ -162,6 +182,7 @@ function AdminLayout({ children, pageTitle, pageSubtitle }) {
                     </AnimatePresence>
                 </main>
             </div>
+            <BottomNav />
         </div>
     );
 }
@@ -255,6 +276,7 @@ function AppRoutes() {
             } />
 
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
